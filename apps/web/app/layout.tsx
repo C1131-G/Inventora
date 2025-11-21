@@ -4,12 +4,12 @@ import "./globals.css";
 import React from "react";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+    src: "./fonts/GeistVF.woff",
+    variable: "--font-geist-sans",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+    src: "./fonts/GeistMonoVF.woff",
+    variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
@@ -20,15 +20,15 @@ export const metadata: Metadata = {
 
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    return (
+        <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }
