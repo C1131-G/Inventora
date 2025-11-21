@@ -1,0 +1,13 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+
+  "compilerOptions": {
+    "composite": false,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "skipLibCheck": true,
+    "strict": true
+  },
+
+  "include": ["src"]
+}
