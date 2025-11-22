@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import "../styles/button.css";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost";
 export type ButtonSize = "sm" | "md" | "lg";
