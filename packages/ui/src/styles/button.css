@@ -1,0 +1,36 @@
+/*Base structure */
+.ui-btn-base {
+    @apply inline-flex items-center justify-center font-medium rounded-md
+    transition-colors duration-200 select-none;
+}
+
+/* Variants */
+.ui-btn-variant-primary {
+    @apply bg-gray-900 text-white hover:bg-gray-800 active:bg-gray-700;
+}
+
+.ui-btn-variant-secondary {
+    @apply bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400;
+}
+
+.ui-btn-variant-ghost {
+    @apply bg-transparent text-gray-900 hover:bg-gray-100 active:bg-gray-200;
+}
+
+/* Sizes */
+.ui-btn-size-sm {
+    @apply px-3 py-1.5 text-sm;
+}
+
+.ui-btn-size-md {
+    @apply px-4 py-2 text-base;
+}
+
+.ui-btn-size-lg {
+    @apply px-5 py-3 text-lg;
+}
+
+/* Loader */
+.ui-btn-loader {
+    @apply opacity-80;
+}
