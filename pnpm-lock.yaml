@@ -20,9 +20,18 @@ importers:
 
   apps/web:
     dependencies:
+      '@repo/auth':
+        specifier: workspace:*
+        version: link:../../packages/auth
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@repo/validation':
+        specifier: workspace:*
+        version: link:../../packages/validation
       '@tailwindcss/postcss':
         specifier: ^4.1.17
         version: 4.1.17
@@ -103,6 +112,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@repo/validation':
+        specifier: workspace:*
+        version: link:../validation
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3

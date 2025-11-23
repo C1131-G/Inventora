@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+  ".": "./src/index.ts"
+  },
   "scripts": {
     "generate": "prisma generate",
     "migrate:dev": "prisma migrate dev",
@@ -13,11 +16,12 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.0.0",
     "@prisma/client": "^7.0.0",
-    "@repo/typescript-config": "workspace:*",
     "dotenv": "^17.2.3",
     "pg": "^8.16.3"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@repo/validation" : "workspace:*",
     "@types/node": "^22.19.1",
     "@types/pg": "^8.15.6",
     "prisma": "^7.0.0",
