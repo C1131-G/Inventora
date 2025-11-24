@@ -1,10 +1,10 @@
 "use server";
 
-import {UserSigninSchema, zodError} from "@repo/validation";
+import {UserSigninSchema} from "@repo/validation";
 import {userService} from "../../service/user.service";
 import {signToken, verifyPassword} from "@repo/auth";
 import {redirect} from "next/navigation";
-import { cookies } from 'next/headers';
+import {setAuthCookie} from "../../utils/auth/cookie";
 
 
 export async function signin(formdata:FormData){
@@ -16,7 +16,10 @@ export async function signin(formdata:FormData){
 
         const validated = UserSigninSchema.safeParse(data);
         if (!validated.success){
-            return zodError(validated.error);
+            return {
+                success: false,
+                error: "validation failed",
+            };
         }
 
         const {email,password} = validated.data;
@@ -39,19 +42,13 @@ export async function signin(formdata:FormData){
 
         const token = await signToken({id:checkUser.id,email:checkUser.email});
 
-        (await cookies()).set('auth_token', token, {
-            httpOnly: true,
-            sameSite: 'strict',
-            maxAge: 60 * 60 * 24 * 7,
-            path: '/',
-        });
-
-        redirect("/dashboard");
+        await setAuthCookie(token);
     }catch (error){
-        console.error("Signup error:", error);
+        console.error("Signin error:", error);
         return {
             success: false,
             error: "Something went wrong. Please try again later.",
         };
     }
+    redirect("/dashboard");
 }

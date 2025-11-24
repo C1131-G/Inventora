@@ -17,14 +17,14 @@ export default function Home() {
 
                     <div className={"flex gap-4 justify-center"}>
                         <Link
-                            href={"/sign-in"}
+                            href={"/signin"}
                             className={"bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"}
                         >
                             Sign In
                         </Link>
 
                         <Link
-                            href={"/sign-up"}
+                            href={"/signup"}
                             className={"bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold border-2 border-purple-600 hover:bg-purple-50 transition-colors"}
                         >
                             Learn More

@@ -1,9 +1,12 @@
 import { productDal } from "@repo/db";
-import { requireAuth } from "../utils/auth/require-auth";
+import {authGuard} from "../utils/auth/auth-guard";
 
 export const productService = {
-    dashboardStats: async () => {
-        const payload = await requireAuth();
-        return productDal.dashboardStats(payload.id);
+    dashboardStats: () => {
+        return authGuard((userId) => productDal.dashboardStats(userId));
+    },
+
+    recentlyAddedProducts :  () => {
+        return authGuard((userId) => productDal.recentlyAddedProducts(userId));
     }
 };

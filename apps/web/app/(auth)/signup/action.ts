@@ -1,7 +1,6 @@
 "use server";
 
 import {userService} from "../../service/user.service";
-import {zodError} from "@repo/validation";
 import {UserSignupSchema} from "@repo/validation";
 import {hashPassword} from "@repo/auth";
 
@@ -17,7 +16,10 @@ export async function signup(formdata : FormData) {
 
         const validated = UserSignupSchema.safeParse(data);
         if (!validated.success) {
-            return zodError(validated.error);
+            return {
+                success: false,
+                error: "validation failed",
+            };
         }
 
         const {email, password, name} = validated.data;
@@ -37,7 +39,6 @@ export async function signup(formdata : FormData) {
             password: hashedPassword,
             name: name
         })
-        redirect("/signin");
     }catch (error){
         console.error("Signup error:", error);
         return {
@@ -45,4 +46,5 @@ export async function signup(formdata : FormData) {
             error: "Something went wrong. Please try again later.",
         };
     }
+    redirect("/signin");
 }

@@ -1,4 +1,7 @@
-export default function DashboardPage(){
+import {dashboard} from "./action";
+
+export default async function DashboardPage(){
+    const data = await dashboard();
     return(
       <div className={"min-h-screen bg-gray-50"}>
           <main className={"p-2"}>
@@ -14,6 +17,21 @@ export default function DashboardPage(){
                         </div>
                     </div>
                 </div>
+
+              <div className={"grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8"}>
+                  <div className={"bg-white rounded-lg border border-gray-200 p-6"}>
+                      <h2 className={"text-lg font-semibold text-gray-900 mb-6"}>Key Metrics</h2>
+                      <div className={"grid grid-cols-3 gap-6"}>
+                          <div>
+                              <div>
+                                  {data.totalValue}
+                              </div>
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
 
           </main>
       </div>

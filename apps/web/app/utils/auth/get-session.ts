@@ -1,8 +1,8 @@
-import {cookies} from "next/headers";
 import {JWTPayload, verifyToken} from "@repo/auth";
+import {getTokenFromCookies} from "./cookie";
 
 export async function getSession():Promise<JWTPayload> {
-    const token = (await cookies()).get("token")?.value;
+   const token =  await getTokenFromCookies();
     if (!token) throw new Error("Unauthorized");
 
     const payload = await verifyToken(token);
