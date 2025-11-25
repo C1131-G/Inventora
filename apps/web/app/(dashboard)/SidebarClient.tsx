@@ -3,7 +3,7 @@
 import {Sidebar} from "@repo/ui";
 import { BarChart3, Package, Plus, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
-import {SignoutButton} from "./components/SignoutButton";
+import {SignoutButton} from "../_components/SignoutButton";
 
 export function SidebarClient() {
     const pathname = usePathname();

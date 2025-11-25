@@ -1,6 +1,6 @@
 "use server";
 
-import {userService} from "../../service/user.service";
+import {userService} from "../../_service/user.service";
 import {UserSignupSchema} from "@repo/validation";
 import {hashPassword} from "@repo/auth";
 

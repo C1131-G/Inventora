@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.17",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.554.0",
     "next": "^16.0.3",
     "postcss": "^8.5.6",
@@ -20,12 +21,12 @@
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@repo/auth": "workspace:*",
+    "@repo/db": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@repo/db": "workspace:*",
-    "@repo/validation" : "workspace:*",
-    "@repo/auth" : "workspace:*",
+    "@repo/validation": "workspace:*",
     "@types/node": "^22.19.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",

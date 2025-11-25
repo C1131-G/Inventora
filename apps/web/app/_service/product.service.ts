@@ -1,5 +1,5 @@
 import { productDal } from "@repo/db";
-import {authGuard} from "../utils/auth/auth-guard";
+import {authGuard} from "../_utils/auth/auth-guard";
 
 export const productService = {
     dashboardStats: () => {
