@@ -2,9 +2,10 @@ import { dashboard } from "./_action";
 import { TrendingUp } from "lucide-react";
 import { productService } from "../../_service/product.service";
 import { clsx } from "clsx";
+import ProductChart from "../../_components/ProductChart";
 
 export default async function DashboardPage() {
-  const data = await dashboard();
+  const productData = await dashboard();
   const recentProduct = await productService.recentlyAddedProducts();
   return (
     <div className={"min-h-screen bg-gray-50"}>
@@ -32,12 +33,12 @@ export default async function DashboardPage() {
               {/*Total Products*/}
               <div className={"text-center"}>
                 <div className={"text-3xl font-bold text-gray-900"}>
-                  {data.convertedTotalProducts}
+                  {productData.convertedTotalProducts}
                 </div>
                 <div className={"text-sm text-gray-600"}>Total Products</div>
                 <div className={"flex items-center justify-center mt-1"}>
                   <span className={"text-xs text-green-600"}>
-                    +{data.totalProducts}
+                    +{productData.totalProducts}
                   </span>
                   <TrendingUp className={"w-3 h-3 text-green-600 ml-1"} />
                 </div>
@@ -45,12 +46,12 @@ export default async function DashboardPage() {
               {/*Total Value*/}
               <div className={"text-center"}>
                 <div className={"text-3xl font-bold text-gray-900"}>
-                  ₹{data.convertedTotalValue}
+                  ₹{productData.convertedTotalValue}
                 </div>
                 <div className={"text-sm text-gray-600"}>Total Value</div>
                 <div className={"flex items-center justify-center mt-1"}>
                   <span className={"text-xs text-green-600"}>
-                    +{data.convertedTotalValue}
+                    +{productData.convertedTotalValue}
                   </span>
                   <TrendingUp className={"w-3 h-3 text-green-600 ml-1"} />
                 </div>
@@ -58,15 +59,24 @@ export default async function DashboardPage() {
               {/*Low Stock*/}
               <div className={"text-center"}>
                 <div className={"text-3xl font-bold text-gray-900"}>
-                  {data.lowStockProducts}
+                  {productData.lowStockProducts}
                 </div>
                 <div className={"text-sm text-gray-600"}>Low Stock</div>
                 <div className={"flex items-center justify-center mt-1"}>
                   <span className={"text-xs text-green-600"}>
-                    +{data.lowStockProducts}
+                    +{productData.lowStockProducts}
                   </span>
                   <TrendingUp className={"w-3 h-3 text-green-600 ml-1"} />
                 </div>
+              </div>
+            </div>
+          </div>
+          {/*Inventory over time*/}
+          <div className={"bg-white rounded-lg border-gray-200 border p-6"}>
+            <div>
+              <h2 className={"mb-6"}>New products per week</h2>
+              <div className={"h-48 w-full min-w-0"}>
+                <ProductChart data={productData.weeklyProductsData} />
               </div>
             </div>
           </div>
