@@ -1,12 +1,22 @@
 import { dashboard } from "./_action";
-import { TrendingUp } from "lucide-react";
-import { productService } from "../../_service/product.service";
-import { clsx } from "clsx";
-import ProductChart from "../../_components/ProductChart";
+import { productService } from "../_service/product.service";
+import KeyMetrics from "./_components/KeyMetrics";
+import InventoryChart from "./_components/InventoryChart";
+import StockLevels from "./_components/StockLevels";
+import EfficiencyGauge from "./_components/EfficiencyGauge";
 
 export default async function DashboardPage() {
-  const productData = await dashboard();
-  const recentProduct = await productService.recentlyAddedProducts();
+  const productsData = await dashboard();
+  const {
+    convertedTotalProducts,
+    convertedTotalValue,
+    lowStockProducts,
+    totalProducts,
+    weeklyProductsData,
+    inStockPercentage,
+  } = productsData;
+
+  const recentProductsData = await productService.recentlyAddedProducts();
   return (
     <div className={"min-h-screen bg-gray-50"}>
       <main className={"p-2"}>
@@ -23,127 +33,18 @@ export default async function DashboardPage() {
             </div>
           </div>
         </div>
-        {/*Key Metrics*/}
         <div className={"grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8"}>
-          <div className={"bg-white rounded-lg border border-gray-200 p-6"}>
-            <h2 className={"text-lg font-semibold text-gray-900 mb-6"}>
-              Key Metrics
-            </h2>
-            <div className={"grid grid-cols-3 gap-6"}>
-              {/*Total Products*/}
-              <div className={"text-center"}>
-                <div className={"text-3xl font-bold text-gray-900"}>
-                  {productData.convertedTotalProducts}
-                </div>
-                <div className={"text-sm text-gray-600"}>Total Products</div>
-                <div className={"flex items-center justify-center mt-1"}>
-                  <span className={"text-xs text-green-600"}>
-                    +{productData.totalProducts}
-                  </span>
-                  <TrendingUp className={"w-3 h-3 text-green-600 ml-1"} />
-                </div>
-              </div>
-              {/*Total Value*/}
-              <div className={"text-center"}>
-                <div className={"text-3xl font-bold text-gray-900"}>
-                  ₹{productData.convertedTotalValue}
-                </div>
-                <div className={"text-sm text-gray-600"}>Total Value</div>
-                <div className={"flex items-center justify-center mt-1"}>
-                  <span className={"text-xs text-green-600"}>
-                    +{productData.convertedTotalValue}
-                  </span>
-                  <TrendingUp className={"w-3 h-3 text-green-600 ml-1"} />
-                </div>
-              </div>
-              {/*Low Stock*/}
-              <div className={"text-center"}>
-                <div className={"text-3xl font-bold text-gray-900"}>
-                  {productData.lowStockProducts}
-                </div>
-                <div className={"text-sm text-gray-600"}>Low Stock</div>
-                <div className={"flex items-center justify-center mt-1"}>
-                  <span className={"text-xs text-green-600"}>
-                    +{productData.lowStockProducts}
-                  </span>
-                  <TrendingUp className={"w-3 h-3 text-green-600 ml-1"} />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/*Inventory over time*/}
-          <div className={"bg-white rounded-lg border-gray-200 border p-6"}>
-            <div>
-              <h2 className={"mb-6"}>New products per week</h2>
-              <div className={"h-48 w-full min-w-0"}>
-                <ProductChart data={productData.weeklyProductsData} />
-              </div>
-            </div>
-          </div>
+          <KeyMetrics
+            convertedTotalProducts={convertedTotalProducts}
+            convertedTotalValue={convertedTotalValue}
+            lowStockProducts={lowStockProducts}
+            totalProducts={totalProducts}
+          />
+          <InventoryChart weeklyProductsData={weeklyProductsData} />
         </div>
-
-        {/*Stock Levels*/}
         <div className={"grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8"}>
-          <div className={"bg-white border border-gray-200 rounded-lg p-6"}>
-            <div className={"flex items-center justify-center mb-6"}>
-              <h2 className={"text-lg font-semibold text-gray-900"}>
-                Stock Levels
-              </h2>
-            </div>
-            <div className={"space-y-3"}>
-              {recentProduct.map((product, key) => {
-                const low = product.lowStockAt ?? 5;
-                let stockLevel = 2;
-                if (product.quantity === 0) {
-                  stockLevel = 0;
-                } else if (product.quantity <= low) {
-                  stockLevel = 1;
-                }
-                {
-                  /*Colour based on stock quantity*/
-                }
-                const bgColors = [
-                  "bg-red-600",
-                  "bg-yellow-600",
-                  "bg-green-600",
-                ];
-                const textColors = [
-                  "text-red-600",
-                  "text-yellow-600",
-                  "text-green-600",
-                ];
-
-                return (
-                  <div
-                    key={key}
-                    className={
-                      "flex items-center justify-between p-3 rounded-lg bg-gray-50"
-                    }
-                  >
-                    <div className={"flex items-center space-x-3"}>
-                      <div
-                        className={clsx(
-                          "w-3 h-3 rounded-full",
-                          bgColors[stockLevel],
-                        )}
-                      />
-                      <span className={"text-sm font-medium text-gray-900"}>
-                        {product.name}
-                      </span>
-                    </div>
-                    <div
-                      className={clsx(
-                        "text-sm font-medium",
-                        textColors[stockLevel],
-                      )}
-                    >
-                      {product.quantity} units
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <StockLevels products={recentProductsData} />
+          <EfficiencyGauge inStockPercentage={inStockPercentage} />
         </div>
       </main>
     </div>

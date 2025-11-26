@@ -9,13 +9,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { ProductChartProps } from "../_types/ProductChartProps";
 
-interface ChartData {
-  weeks: string;
-  products: number;
-}
-
-export default function ProductChart({ data }: { data: ChartData[] }) {
+export default function ProductChart({ data }: ProductChartProps) {
   return (
     <div className={"h-48 w-full"}>
       <ResponsiveContainer width={"100%"} height={"100%"}>

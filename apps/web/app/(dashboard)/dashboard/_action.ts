@@ -1,4 +1,4 @@
-import { productService } from "../../_service/product.service";
+import { productService } from "../_service/product.service";
 import { clsx } from "clsx";
 
 export async function dashboard() {
@@ -41,6 +41,21 @@ export async function dashboard() {
     });
   }
 
+  const inStockCount = productList.filter((p) => Number(p.quantity) > 5).length;
+  const lowStockCount = productList.filter(
+    (p) => Number(p.quantity) <= 5 && Number(p.quantity) >= 1,
+  ).length;
+  const outOfStockCount = productList.filter(
+    (p) => Number(p.quantity) === 0,
+  ).length;
+
+  const inStockPercentage =
+    totalProducts > 0 ? Math.round((inStockCount / totalProducts) * 100) : 0;
+  const lowStockPercentage =
+    totalProducts > 0 ? Math.round((lowStockCount / totalProducts) * 100) : 0;
+  const outOfStockPercentage =
+    totalProducts > 0 ? Math.round((outOfStockCount / totalProducts) * 100) : 0;
+
   return {
     totalProducts,
     convertedTotalProducts,
@@ -49,5 +64,8 @@ export async function dashboard() {
     convertedTotalValue,
     productList,
     weeklyProductsData,
+    inStockPercentage,
+    lowStockPercentage,
+    outOfStockPercentage,
   };
 }
