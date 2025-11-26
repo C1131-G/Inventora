@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { signin } from "./action";
+import { signin } from "./_action";
 
 export default function SigninPage() {
   const [pending, startTransition] = useTransition();

@@ -1,4 +1,4 @@
-import { dashboard } from "./action";
+import { dashboard } from "./_action";
 import { TrendingUp } from "lucide-react";
 import { productService } from "../../_service/product.service";
 import { clsx } from "clsx";
@@ -73,7 +73,7 @@ export default async function DashboardPage() {
         </div>
 
         {/*Stock Levels*/}
-        <div className={"gird grid-cols-1 lg:grid-cols-2 gap-8 mb-8"}>
+        <div className={"grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8"}>
           <div className={"bg-white border border-gray-200 rounded-lg p-6"}>
             <div className={"flex items-center justify-center mb-6"}>
               <h2 className={"text-lg font-semibold text-gray-900"}>
@@ -104,23 +104,31 @@ export default async function DashboardPage() {
                 ];
 
                 return (
-                  <div key={key}>
-                    <div>
+                  <div
+                    key={key}
+                    className={
+                      "flex items-center justify-between p-3 rounded-lg bg-gray-50"
+                    }
+                  >
+                    <div className={"flex items-center space-x-3"}>
                       <div
                         className={clsx(
                           "w-3 h-3 rounded-full",
                           bgColors[stockLevel],
                         )}
                       />
-                      <span>{product.name}</span>
+                      <span className={"text-sm font-medium text-gray-900"}>
+                        {product.name}
+                      </span>
                     </div>
                     <div
                       className={clsx(
                         "text-sm font-medium",
                         textColors[stockLevel],
                       )}
-                    />
-                    <div> {product.quantity} units</div>
+                    >
+                      {product.quantity} units
+                    </div>
                   </div>
                 );
               })}
