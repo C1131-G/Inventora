@@ -1,4 +1,4 @@
-import { dashboard } from "./_action";
+import { dashboard } from "./_queries/dashboard";
 import { productService } from "../_service/product.service";
 import KeyMetrics from "./_components/KeyMetrics";
 import InventoryChart from "./_components/InventoryChart";

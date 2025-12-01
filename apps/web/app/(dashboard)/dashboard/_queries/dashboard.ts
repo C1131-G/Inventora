@@ -1,4 +1,4 @@
-import { productService } from "../_service/product.service";
+import { productService } from "../../_service/product.service";
 import { clsx } from "clsx";
 
 export async function dashboard() {

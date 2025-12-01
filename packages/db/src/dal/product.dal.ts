@@ -18,11 +18,6 @@ export const productDal = {
 
         prisma.product.findMany({
           where: { userId },
-          select: {
-            price: true,
-            quantity: true,
-            createdAt: true,
-          },
           orderBy: {
             createdAt: "desc",
           },
@@ -40,6 +35,12 @@ export const productDal = {
       where: { userId },
       orderBy: { createdAt: "desc" },
       take: 5,
+    });
+  },
+
+  deleteProduct: async (id: string, userId: string) => {
+    return prisma.product.delete({
+      where: { id, userId },
     });
   },
 };

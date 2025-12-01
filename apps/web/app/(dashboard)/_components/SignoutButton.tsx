@@ -10,7 +10,7 @@ export function SignoutButton() {
       variant={"secondary"}
       size={"md"}
       className={
-        "w-full rounded-lg bg-gray-800 flex items-center justify-start gap-2 text-white hover:bg-purple-100 hover:text-gray-800 z-50"
+        "w-full rounded-lg flex items-center justify-start gap-2 text-black bg-gray-800 cursor-pointer hover:z-50"
       }
       onClick={() => signout()}
     >
