@@ -4,14 +4,14 @@
   "private": true,
   "type": "module",
   "exports": {
-  ".": "./src/index.ts"
+    ".": "./src/index.ts"
   },
   "scripts": {
     "generate": "prisma generate",
     "migrate:dev": "prisma migrate dev",
     "migrate:prod": "prisma migrate deploy",
     "studio": "prisma studio",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node src/seed.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.0.0",
@@ -21,11 +21,12 @@
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@repo/validation" : "workspace:*",
+    "@repo/validation": "workspace:*",
     "@types/node": "^22.19.1",
     "@types/pg": "^8.15.6",
     "prisma": "^7.0.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

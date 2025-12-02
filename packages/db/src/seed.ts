@@ -1,13 +1,13 @@
-import { prisma } from "../src/client";
+import { prisma } from "./client";
 
 async function main() {
   const user = await prisma.user.upsert({
-    where: { email: "demo@example.com" },
+    where: { email: "cibiccf437@gmail.com" },
     update: {},
     create: {
-      email: "demo@example.com",
-      password: "demo-password",
-      name: "Demo User",
+      email: "cibiccf437@gmail.com",
+      password: "$2b$10$/qSoEPMxab8lAyIHD8oSrePIJ/ZB3Z8Zu/RRCrDOy6G7auFnxqiU.",
+      name: "cibi",
     },
   });
 

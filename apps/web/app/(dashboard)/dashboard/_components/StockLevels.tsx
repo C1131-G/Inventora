@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import { StockLevelsProps } from "../_types/StockLevelsProps";
+import { StockLevelsProps } from "../_types/productProps";
 
 export default function StockLevels({ products }: StockLevelsProps) {
   const bgColors = ["bg-red-600", "bg-yellow-600", "bg-green-600"];

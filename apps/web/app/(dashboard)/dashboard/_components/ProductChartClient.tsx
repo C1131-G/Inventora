@@ -9,14 +9,14 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { ProductChartProps } from "../_types/ProductChartProps";
+import { ProductChartProps } from "../_types/productProps";
 
-export default function ProductChart({ data }: ProductChartProps) {
+export default function ProductChartClient({ products }: ProductChartProps) {
   return (
     <div className={"h-48 w-full"}>
       <ResponsiveContainer width={"100%"} height={"100%"}>
         <AreaChart
-          data={data}
+          data={products}
           margin={{ top: 5, bottom: 5, right: 30, left: 20 }}
         >
           <CartesianGrid strokeDasharray={"3 3"} stroke={"#f0f0f0"} />

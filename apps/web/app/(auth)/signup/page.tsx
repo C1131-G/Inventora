@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { signup } from "./_action";
+import { userSignup } from "./_actions/user-signup";
 
 export default function SignupPage() {
   const [pending, startTransition] = useTransition();
@@ -10,7 +10,7 @@ export default function SignupPage() {
   function handleSubmit(formData: FormData) {
     setError(null);
     startTransition(async () => {
-      const res = await signup(formData);
+      const res = await userSignup(formData);
       // redirect() ends execution, so this only runs on validation/user errors
       if (res && !res.success) {
         setError(res.error);

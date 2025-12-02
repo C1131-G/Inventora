@@ -1,12 +1,12 @@
 "use server";
 
-import { userService } from "../_service/user.service";
+import { userService } from "../../_service/user.service";
 import { UserSignupSchema } from "@repo/validation";
 import { hashPassword } from "@repo/auth";
 
 import { redirect } from "next/navigation";
 
-export async function signup(formdata: FormData) {
+export async function userSignup(formdata: FormData) {
   try {
     const data = {
       email: formdata.get("email"),

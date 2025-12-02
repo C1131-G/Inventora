@@ -1,12 +1,12 @@
 "use server";
 
 import { UserSigninSchema } from "@repo/validation";
-import { userService } from "../_service/user.service";
+import { userService } from "../../_service/user.service";
 import { signToken, verifyPassword } from "@repo/auth";
 import { redirect } from "next/navigation";
-import { setAuthCookie } from "../../_utils/auth/cookie";
+import { setAuthCookie } from "../../../_utils/auth/cookie";
 
-export async function signin(formdata: FormData) {
+export async function userSignin(formdata: FormData) {
   try {
     const data = {
       email: formdata.get("email"),

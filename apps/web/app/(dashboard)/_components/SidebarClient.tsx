@@ -3,7 +3,7 @@
 import { Sidebar } from "@repo/ui";
 import { BarChart3, Package, Plus, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { SignoutButton } from "./SignoutButton";
+import { SignoutButtonClient } from "../../(auth)/_signout/_components/SignoutButtonClient";
 
 export function SidebarClient() {
   const pathname = usePathname();
@@ -11,13 +11,17 @@ export function SidebarClient() {
   return (
     <div className={"relative z-50"}>
       <Sidebar
-        title="Inventory App"
+        title={"Inventory App"}
         titleIcon={<BarChart3 className="w-7 h-7 mr-3" />}
         activePath={pathname}
-        className="fixed left-0 top-0 w-64 min-h-screen bg-gray-900 text-white p-6 z-10 flex flex-col"
-        headerClassName="text-xl font-semibold flex items-center gap-2 mb-8"
-        itemClassName="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors"
-        activeItemClassName="bg-purple-100 text-gray-800 hover:bg-purple-100"
+        className={
+          "fixed left-0 top-0 w-64 min-h-screen bg-gray-900 text-white p-6 z-10 flex flex-col"
+        }
+        headerClassName={"text-xl font-semibold flex items-center gap-2 mb-8"}
+        itemClassName={
+          "flex items-center gap-3 px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors"
+        }
+        activeItemClassName={"bg-purple-100 text-gray-800 hover:bg-purple-100"}
         items={[
           {
             label: "Dashboard",
@@ -41,8 +45,8 @@ export function SidebarClient() {
           },
         ]}
       />
-      <div className="fixed bottom-6 left-0 w-64 px-6 z-50">
-        <SignoutButton />
+      <div className={"fixed bottom-6 left-0 w-64 px-6 z-50"}>
+        <SignoutButtonClient />
       </div>
     </div>
   );
