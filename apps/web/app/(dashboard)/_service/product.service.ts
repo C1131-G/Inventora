@@ -16,4 +16,10 @@ export const productService = {
     authGuard((userId: string) => {
       return productDal.deleteProduct(id, userId);
     }),
+
+  searchProduct: (q: string) => {
+    return authGuard((userId: string) => {
+      return productDal.searchProduct(userId, q);
+    });
+  },
 };

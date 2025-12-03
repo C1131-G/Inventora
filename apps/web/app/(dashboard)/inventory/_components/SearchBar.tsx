@@ -1,9 +1,14 @@
-export function SearchBar() {
+export async function SearchBar({
+  defaultValue = "",
+}: {
+  defaultValue?: string;
+}) {
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6">
       <form className="flex gap-2" action="/inventory" method="GET">
         <input
           name="q"
+          defaultValue={defaultValue}
           placeholder="Search products..."
           className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:border-transparent"
         />

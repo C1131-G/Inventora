@@ -43,4 +43,14 @@ export const productDal = {
       where: { id, userId },
     });
   },
+
+  searchProduct: async (userId: string, q: string) => {
+    return prisma.product.findMany({
+      where: {
+        userId,
+        ...(q ? { name: { contains: q, mode: "insensitive" } } : {}),
+      },
+      orderBy: { createdAt: "desc" },
+    });
+  },
 };
