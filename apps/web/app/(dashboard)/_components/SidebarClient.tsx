@@ -38,11 +38,6 @@ export function SidebarClient() {
             href: "/add-product",
             icon: <Plus className={"w-5 h-5"} />,
           },
-          {
-            label: "Settings",
-            href: "/settings",
-            icon: <Settings className={"w-5 h-5"} />,
-          },
         ]}
       />
       <div className={"fixed bottom-6 left-0 w-64 px-6 z-50"}>

@@ -11,7 +11,6 @@ export default function SignupPage() {
     setError(null);
     startTransition(async () => {
       const res = await userSignup(formData);
-      // redirect() ends execution, so this only runs on validation/user errors
       if (res && !res.success) {
         setError(res.error);
       }
@@ -19,49 +18,45 @@ export default function SignupPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white shadow p-8 rounded">
-        <h1 className="text-xl font-semibold mb-6">Create Account</h1>
+    <main className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+      <div className="w-full max-w-sm bg-white p-6 rounded-lg border shadow">
+        <h1 className="text-xl font-semibold text-center mb-4">
+          Create Account
+        </h1>
 
-        {error && <p className="mb-4 text-red-600 text-sm">{error}</p>}
+        {error && <p className="text-sm text-red-600 mb-3">{error}</p>}
 
         <form action={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block mb-1 text-sm font-medium">Name</label>
-            <input
-              name="name"
-              type="text"
-              required
-              className="w-full border p-2 rounded"
-            />
-          </div>
+          <input
+            name="name"
+            type="text"
+            required
+            placeholder="Name"
+            className="w-full border p-2 rounded focus:ring-2 "
+          />
 
-          <div>
-            <label className="block mb-1 text-sm font-medium">Email</label>
-            <input
-              name="email"
-              type="email"
-              required
-              className="w-full border p-2 rounded"
-            />
-          </div>
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder="Email"
+            className="w-full border p-2 rounded focus:ring-2"
+          />
 
-          <div>
-            <label className="block mb-1 text-sm font-medium">Password</label>
-            <input
-              name="password"
-              type="password"
-              required
-              className="w-full border p-2 rounded"
-            />
-          </div>
+          <input
+            name="password"
+            type="password"
+            required
+            placeholder="Password"
+            className="w-full border p-2 rounded focus:ring-2 "
+          />
 
           <button
             type="submit"
             disabled={pending}
-            className="w-full bg-black text-white py-2 rounded disabled:opacity-60"
+            className="w-full hover:cursor-pointer bg-purple-500 text-white py-2 rounded hover:bg-purple-600 disabled:opacity-60"
           >
-            {pending ? "Creating account..." : "Sign Up"}
+            {pending ? "Creating..." : "Sign Up"}
           </button>
         </form>
       </div>

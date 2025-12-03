@@ -53,4 +53,17 @@ export const productDal = {
       orderBy: { createdAt: "desc" },
     });
   },
+
+  createProduct: async (data: {
+    userId: string;
+    name: string;
+    price: number;
+    quantity: number;
+    sku?: string;
+    lowStockAt?: number | null;
+  }) => {
+    return prisma.product.create({
+      data,
+    });
+  },
 };

@@ -22,4 +22,18 @@ export const productService = {
       return productDal.searchProduct(userId, q);
     });
   },
+
+  createProduct: (data: {
+    name: string;
+    price: number;
+    quantity: number;
+    sku?: string;
+    lowStockAt?: number | null;
+  }) =>
+    authGuard(async (userId: string) => {
+      return productDal.createProduct({
+        ...data,
+        userId,
+      });
+    }),
 };
